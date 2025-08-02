@@ -4,34 +4,59 @@ import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
 
 
-export const initialProfile = async() => {
+// export const initialProfile = async() => {
+//   const user = await currentUser();
+
+//   if (!user){ 
+//     return redirect("/sign-in")
+//   }
+  
+//   const profile =await db.profile.findUnique({
+//     where:{
+//       userId: user.id
+//     }
+//   });
+
+//   if(profile)
+//   {
+//     return profile;
+//   }
+
+//   const newProfile = await db.profile.create({
+//     data:{
+//       userId : user.id,
+//       name : `${user.firstName} ${user.lastName}`,
+//       imageUrl: user.imageUrl,
+//       email: user.emailAddresses[0].emailAddress
+//     }
+//   });
+
+//   return newProfile;  
+
+// } 
+export const initialProfile = async () => {
   const user = await currentUser();
 
-  if (!user){ 
-    // return RedirectToSignIn();
-    return redirect("/sign-in")
+  if (!user) {
+    throw new Error("No authenticated user found.");
   }
-  
-  const profile =await db.profile.findUnique({
-    where:{
-      userId: user.id
-    }
+
+  const profile = await db.profile.findUnique({
+    where: { userId: user.id },
   });
 
-  if(profile)
-  {
+  if (profile) {
     return profile;
   }
 
   const newProfile = await db.profile.create({
-    data:{
-      userId : user.id,
-      name : `${user.firstName} ${user.lastName}`,
+    data: {
+      userId: user.id,
+      name: `${user.firstName ?? ""} ${user.lastName ?? ""}`.trim(),
       imageUrl: user.imageUrl,
-      email: user.emailAddresses[0].emailAddress
-    }
+      email: user.emailAddresses?.[0]?.emailAddress ?? "",
+    },
   });
 
-  return newProfile;  
-
-} 
+  return newProfile;
+};
