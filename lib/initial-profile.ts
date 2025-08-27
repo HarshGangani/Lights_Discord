@@ -38,7 +38,8 @@ export const initialProfile = async () => {
   const user = await currentUser();
 
   if (!user) {
-    throw new Error("No authenticated user found.");
+    // throw new Error("No authenticated user found.");
+    return redirect("/sign-in");
   }
 
   const profile = await db.profile.findUnique({

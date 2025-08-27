@@ -24,15 +24,20 @@
 // }))
 
 
-import { Server } from "@prisma/client";
+import { Channel, ChannelType, Server } from "@prisma/client";
 import { create } from "zustand";
 
 // Modal types you support
-export type ModalType = "createServer" | "invite" | "editServer" | "members" | "createChannel" | "leaveServer" | "deleteServer";
+export type ModalType = "createServer" | "invite" | 
+"editServer" | "members" | 
+"createChannel" | "leaveServer" | "deleteServer"| 
+"deleteChannel" | "editChannel" ;
 
 // Optional data passed to modals
 interface ModalData {
   server?: Server;
+  channel?:Channel;
+  channelType?: ChannelType;
 }
 
 // Modal store interface

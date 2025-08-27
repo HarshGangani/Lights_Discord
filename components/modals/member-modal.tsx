@@ -177,10 +177,6 @@ return (
                   </DropdownMenu>
                 </div>
               )}
-
-              {loadingId !== member.id && (
-                <Loader2 className="animate-spin text-zinc-500 h-4 w-4 ml-auto"/>
-              )}
             </div>
           ))}
         </ScrollArea>

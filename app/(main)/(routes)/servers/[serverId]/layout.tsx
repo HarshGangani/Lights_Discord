@@ -10,7 +10,7 @@ const ServerIdLayout = async ({
   children: React.ReactNode;
   params: { serverId: string };
 }) => {
-  const { serverId } = params; 
+  const { serverId } = await params; 
 
   const profile = await currentProfile();
 
@@ -36,7 +36,7 @@ const ServerIdLayout = async ({
   }
 
   return (
-    <div className="h-full">
+    <div className="h-full" >
       <div className="md:flex h-full md:w-60 z-40 flex-col fixed inset-y-0">
         <ServerSidebar serverId={serverId} />
       </div>

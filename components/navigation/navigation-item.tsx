@@ -18,7 +18,7 @@ export const NavigationItem = ({
     name
 }: NavigationItemProps) => {
 
-    const params = useParams();
+    const params =  useParams();
     const router = useRouter();
 
     const onClick = () => {
@@ -28,7 +28,7 @@ export const NavigationItem = ({
     return(
         <ActionTooltip side="right" align="center" label={name} >
             <button 
-            onClick={() => console.log("Click")}
+            onClick={() => onClick()}
             className="group flex items-center">
                 <div 
                 className={cn(
@@ -42,7 +42,9 @@ export const NavigationItem = ({
                     params?.serverId === id && "bg-primary/10 text-primary rounded-[16px]")}>
                     <Image 
                     fill 
-                    src={imageUrl} 
+                    src={imageUrl}
+                    sizes="48px"
+                    priority
                     alt="Channel" />
                 </div>
                 

@@ -13,7 +13,7 @@ export const UseAvatar = ({
 }: UseAvatarProps) =>{
     return(
         <Avatar className={cn(
-        "h-7 w-7 ,md:h-10 md:w-10",
+        "h-5 w-5 ,md:h-10 md:w-10",
         )}>
             <AvatarImage src={src}/>
         </Avatar>

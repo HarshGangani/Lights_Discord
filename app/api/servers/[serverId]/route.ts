@@ -24,7 +24,8 @@ export async function DELETE(
                 profileId:profile.id,
             }
         });
-
+      
+      console.log("Deleted Server :",server);
       return NextResponse.json(server);
     } catch(error){
         console.log("[SERVERS_ID_DELETE]", error);
