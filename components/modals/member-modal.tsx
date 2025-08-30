@@ -15,7 +15,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuPortal
 
 import { useModal } from "@/hooks/use-modal-store";
 
-import { ServerWithMembersWithProfiles } from "@/lib/type";
+import { ServerWithMembersWithProfiles } from "@/type";
 import { ScrollArea } from "../ui/scroll-area";
 import { UseAvatar } from "@/components/user-avatar";
 import { Check, Gavel, Loader2, MoreVertical, Shield, ShieldCheck, ShieldQuestion } from "lucide-react";

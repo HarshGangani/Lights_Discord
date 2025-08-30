@@ -32,38 +32,27 @@
 // export default ioHandler;
 
 
-import type { NextApiRequest,NextApiResponse } from "next";
-import type { Server as NetServer } from "http";
-import type { Socket } from "net";
+import type { NextApiRequest } from "next";
 import { Server as SocketIOServer } from "socket.io";
+import { NextApiResponseServerIo } from "@/type";
 
 // ✅ Extend Next.js response to include `io`
-export type NextApiResponseServerIo = NextApiResponse & {
-  socket: Socket & {
-    server: NetServer & {
-      io?: SocketIOServer;
-    };
-  };
-};
+// export type NextApiResponseServerIo = NextApiResponse & {
+//   socket: Socket & {
+//     server: NetServer & {
+//       io?: SocketIOServer;
+//     };
+//   };
+// };
 
 const ioHandler = (req: NextApiRequest, res: NextApiResponseServerIo) => {
   if (!res.socket.server.io) {
-    // console.log("🔌 Initializing new Socket.IO server...");
 
     // Attach Socket.IO to the existing Next.js HTTP server
     const io = new SocketIOServer(res.socket.server, {
       path: "/api/socket/io",
       addTrailingSlash: false,
     });
-
-    // ✅ Connection handler
-    // io.on("connection", (socket) => {
-    //   console.log("✅ A client connected:", socket.id);
-
-    //   socket.on("disconnect", () => {
-    //     console.log("❌ A client disconnected:", socket.id);
-    //   });
-    // });
 
     res.socket.server.io = io; // Save to server instance
   } else {
